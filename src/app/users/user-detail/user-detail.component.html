@@ -1,0 +1,81 @@
+<div class="wrapper w-100 bg-body-tertiary shadow position-relative">
+  <h4 class="text-center mb-4">
+    @if (user.id) {
+      Update
+    } @else {
+      Add
+    }
+    User
+  </h4>
+  <form (submit)="onSubmit()" [formGroup]="form">
+    @if (user.id) {
+      <div class="form-floating mb-4">
+        <input type="text" class="form-control"[value]="user.id" disabled placeholder="id">
+        <label>ID</label>
+      </div>
+    }
+    <div class="form-floating mb-4">
+      <input type="text" class="form-control" formControlName="username" placeholder="username">
+      <label>Username</label>
+      @if (username?.invalid && (username?.dirty || username?.touched || submitted)) {
+        <div class="alert alert-danger">
+          @if (username?.hasError('minlength')) {
+            Must have at least 3 characters
+          } @else if (username?.hasError('required')) {
+            Cannot be empty
+          } @else if (username?.hasError('maxlength')) {
+            Cannot be more than 30 characters
+          }
+        </div>
+      }
+    </div>
+    <div class="form-floating mb-4">
+      <input type="email" class="form-control" formControlName="email" placeholder="email">
+      <label>Email</label>
+      @if (email?.invalid && (email?.dirty || email?.touched || submitted)) {
+        <div class="alert alert-danger">
+          @if (email?.hasError('email')) {
+            Invalid email
+          } @else if (email?.hasError('required')) {
+            Cannot be empty
+          }
+        </div>
+      }
+    </div>
+    <div class="form-floating mb-4">
+      <input type="password" class="form-control" formControlName="password" placeholder="Password">
+      <label>Password</label>
+      @if (password?.invalid && (password?.dirty || password?.touched || submitted)) {
+        <div class="alert alert-danger">
+          @if (password?.hasError('required')) {
+            Cannot be empty
+          }
+        </div>
+      }
+    </div>
+    <div class="form-floating mb-4">
+      <select class="form-select" formControlName="role">
+        @for (role of roles; track $index) {
+          <option [value]="role.id">{{ role.name }}</option>
+        }
+      </select>
+      <label>Role</label>
+      @if (role?.invalid && (role?.dirty || role?.touched || submitted)) {
+        <div class="alert alert-danger">
+          @if (role?.hasError('min')) {
+            Cannot be empty
+          }
+        </div>
+      }
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-outline-secondary">
+        @if (user.id) {
+          Update
+        } @else {
+          Add
+        }
+      </button>
+    </div>
+  </form>
+</div>
