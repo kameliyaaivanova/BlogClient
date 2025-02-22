@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="header d-flex justify-content-between my-4">
+    <h3 class="align-self-end">Roles</h3>
+    @if (hasCreatePermission) {
+      <button type="button" class="btn btn-outline-secondary" routerLink="/roles/add">Add New</button>
+    }
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Created At</th>
+        <th scope="col">Permissions</th>
+        @if (hasDeletePermission || hasUpdatePermission) {
+          <th scope="col">Actions</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (role of roles; track $index) {
+        <tr>
+          <th scope="row">{{ role.id }}</th>
+          <td>{{ role.name }}</td>
+          <td>{{ role.createdAt | date:'medium' }}</td>
+          <td>
+            @for (permission of role.permissions; track $index) {
+              <span class="badge rounded-pill text-bg-secondary me-2 mb-2"><small>{{ permission.description }}</small></span>
+            }
+          </td>
+          @if (hasDeletePermission || hasUpdatePermission) {
+            <td>
+              <div class="actions">
+                @if (role.name != 'Admin' && role.name != 'User') {
+                  @if (hasUpdatePermission) {
+                    <i routerLink="/roles/{{role.id}}" class="bi bi-pencil"></i>
+                  }
+                  @if (hasDeletePermission) {
+                    <i (click)="deleteRole(role.id!)" class="bi bi-trash ms-2"></i>
+                  }
+                }
+              </div>
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+  <app-page-nav [page]="page" (pageChangedEvent)="getPage($event)"></app-page-nav>
+</div>
