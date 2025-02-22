@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="header d-flex justify-content-between my-4">
+    <h3 class="align-self-end">Posts</h3>
+    @if (hasCreatePermission) {
+      <button type="button" class="btn btn-outline-secondary" routerLink="/posts/add">Add New</button>
+    }
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Author</th>
+        <th class="d-none d-md-table-cell" scope="col">Logo</th>
+        <th scope="col">Categories</th>
+        @if (hasDeletePermission || hasUpdatePermission) {
+          <th scope="col">Actions</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (post of posts; track $index) {
+        <tr>
+          <th scope="row">{{ post.id }}</th>
+          <td>{{ post.title }}</td>
+          <td>{{ post.description }}</td>
+          <td>{{ post.author }}</td>
+          <td class="d-none d-md-table-cell"><img class="logo img-fluid" src="{{ post.logo }}"></td>
+          <td>
+            @for (category of post.categories; track $index) {
+              <span class="category badge rounded-pill text-bg-secondary me-2 p-2 mb-2">{{ category.title }}</span>
+            }
+          </td>
+          @if (hasDeletePermission || hasUpdatePermission) {
+            <td>
+              <div class="actions">
+                @if (hasUpdatePermission) {
+                  <i routerLink="/posts/{{post.id}}" class="bi bi-pencil"></i>
+                }
+                @if (hasDeletePermission) {
+                  <i (click)="deletePost(post.id!)" class="bi bi-trash ms-2"></i>
+                }
+              </div>
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+  <app-page-nav [page]="page" (pageChangedEvent)="getPage($event)"></app-page-nav>
+</div>
