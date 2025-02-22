@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="header d-flex justify-content-between my-4">
+    <h3 class="align-self-end">Categories</h3>
+    @if (hasCreatePermission) {
+      <button type="button" class="btn btn-outline-secondary" routerLink="/categories/add">Add New</button>
+    }
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">CreatedAt</th>
+        @if (hasUpdatePermission) {
+          <th scope="col">Actions</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (category of categories; track $index) {
+        <tr>
+          <th scope="row">{{ category.id }}</th>
+          <td>{{ category.title }}</td>
+          <td>{{ category.createdAt | date:'medium' }}</td>
+          @if (hasUpdatePermission) {
+            <td>
+              <div class="actions">
+                @if (hasUpdatePermission) {
+                  <i routerLink="/categories/{{category.id}}" class="bi bi-pencil"></i>
+                }
+              </div>
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+  <app-page-nav [page]="page" (pageChangedEvent)="getPage($event)"></app-page-nav>
+</div>

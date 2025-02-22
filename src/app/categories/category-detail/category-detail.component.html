@@ -1,0 +1,42 @@
+<div class="wrapper w-100 bg-body-tertiary shadow">
+  <h4 class="text-center mb-4">
+    @if (category.id) {
+      Update
+    } @else {
+      Add
+    }
+    Category
+  </h4>
+  <form (submit)="onSubmit()" [formGroup]="form">
+    @if (category.id) {
+      <div class="form-floating mb-4">
+        <input type="text" class="form-control"[value]="category.id" disabled placeholder="id">
+        <label>ID</label>
+      </div>
+    }
+    <div class="form-floating mb-4">
+      <input type="title" class="form-control" formControlName="title" placeholder="title">
+      <label>Title</label>
+      @if (title?.invalid && (title?.dirty || title?.touched || submitted)) {
+        <div class="alert alert-danger">
+          @if (title?.hasError('minlength')) {
+            Must have at least 3 characters
+          } @else if (title?.hasError('required')) {
+            Cannot be empty
+          } @else if (title?.hasError('maxlength')) {
+            Cannot be more than 30 characters
+          }
+        </div>
+      }
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-outline-secondary">
+        @if (category.id) {
+          Update
+        } @else {
+          Add
+        }
+      </button>
+    </div>
+  </form>
+</div>
