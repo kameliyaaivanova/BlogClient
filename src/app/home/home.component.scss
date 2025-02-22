@@ -1,0 +1,26 @@
+.search {
+  width: 200px;
+  transition: .6s width;
+}
+
+.categories {
+  cursor: pointer;
+  display: flex;
+  overflow-x: clip;
+}
+
+.category, .leftArrow, .rightArrow {
+  cursor: pointer;
+}
+
+.leftArrow:hover {
+  width: 50px;
+}
+
+.search:focus {
+  width: 380px;
+}
+
+.description {
+  min-height: 50px;
+}
