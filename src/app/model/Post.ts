@@ -5,7 +5,7 @@ export interface Post {
   title: String;
   description: String;
   author?: String;
-  createdAt?: Date;
+  createdAt?: number;
   logo: String;
   categories: Category[];
   content: String;

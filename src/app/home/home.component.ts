@@ -18,7 +18,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 export class HomeComponent implements OnInit {
   categories: Category[] = []
 
-  selectedCategory: Category = {id: 0, title: 'General', createdAt: new Date()}
+  selectedCategory: Category = {id: 0, title: 'General', createdAt: new Date().getMilliseconds()}
 
   page: Pageable = {} as Pageable
   posts: Post[] = []
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.categoryService.getCategories(0, 200).subscribe(p => {
       this.categories = p.content
-      this.categories.unshift({ id: 0, title: 'General', createdAt: new Date() })
+      this.categories.unshift({ id: 0, title: 'General', createdAt: new Date().getMilliseconds() })
     })
 
     this.route.queryParams.subscribe(params => {

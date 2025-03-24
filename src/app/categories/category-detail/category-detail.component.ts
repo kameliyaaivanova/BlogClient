@@ -15,11 +15,11 @@ export class CategoryDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router, private categoryService: CategoryService, private errorService: ErrorService) {}
 
-  category: Category = { title: '', createdAt: new Date() }
+  category: Category = { title: '', createdAt: new Date().getMilliseconds() }
   submitted: boolean = false
 
   form = new FormGroup({
-    title: new FormControl(this.category.title, [Validators.required, Validators.minLength(3), Validators.maxLength(30)])
+    title: new FormControl(this.category.title, [Validators.required, Validators.minLength(3)])
   })
 
   ngOnInit(): void {

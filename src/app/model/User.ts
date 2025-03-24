@@ -4,7 +4,7 @@ export interface User {
   id?: number
   username: String;
   email: String;
-  createdAt?: Date;
+  createdAt?: number;
   role: Role;
   password?: String;
 }

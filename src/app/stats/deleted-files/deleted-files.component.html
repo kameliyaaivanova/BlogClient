@@ -15,7 +15,7 @@
         <tr>
           <th scope="row">{{ deletedFile.id }}</th>
           <td>{{ deletedFile.amount }}</td>
-          <td>{{ deletedFile.createdAt | date:'medium' }}</td>
+          <td>{{ deletedFile.createdAt*1000 | date:'medium' }}</td>
         </tr>
       }
     </tbody>

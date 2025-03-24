@@ -22,7 +22,7 @@
         <tr>
           <th scope="row">{{ role.id }}</th>
           <td>{{ role.name }}</td>
-          <td>{{ role.createdAt | date:'medium' }}</td>
+          <td>{{ role.createdAt*1000 | date:'medium' }}</td>
           <td>
             @for (permission of role.permissions; track $index) {
               <span class="badge rounded-pill text-bg-secondary me-2 mb-2"><small>{{ permission.description }}</small></span>

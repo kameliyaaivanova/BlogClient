@@ -23,7 +23,7 @@ export class RoleDetailComponent {
     private errorService: ErrorService
   ) {}
 
-  role: Role = { name: '', permissions: [], createdAt: new Date() }
+  role: Role = { name: '', permissions: [], createdAt: new Date().getMilliseconds() }
   submitted: boolean = false
   permissions: Permission[] = []
 
@@ -31,7 +31,7 @@ export class RoleDetailComponent {
   selectedPermissionsIds: number[] = []
 
   form = new FormGroup({
-    name: new FormControl(this.role.name, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
+    name: new FormControl(this.role.name, [Validators.required, Validators.minLength(3)]),
     permissions: new FormControl(this.role.permissions, [Validators.required])
   })
 

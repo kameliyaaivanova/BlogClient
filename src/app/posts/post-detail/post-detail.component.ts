@@ -56,8 +56,8 @@ export class PostDetailComponent {
   selectedFile: File|null = null
 
   form = new FormGroup({
-    title: new FormControl(this.post.title, [Validators.required, Validators.minLength(3), Validators.maxLength(36)]),
-    description: new FormControl(this.post.description, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
+    title: new FormControl(this.post.title, [Validators.required, Validators.minLength(3)]),
+    description: new FormControl(this.post.description, [Validators.required, Validators.minLength(3)]),
     content: new FormControl(this.post.content, [Validators.required, Validators.minLength(5)])
   })
 

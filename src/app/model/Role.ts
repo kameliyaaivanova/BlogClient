@@ -4,5 +4,5 @@ export interface Role {
   id?: number
   name: String;
   permissions: Permission[];
-  createdAt: Date;
+  createdAt: number;
 }

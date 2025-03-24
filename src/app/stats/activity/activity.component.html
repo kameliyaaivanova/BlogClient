@@ -17,7 +17,7 @@
           <th scope="row">{{ activity.id }}</th>
           <td>{{ activity.path }}</td>
           <td>{{ activity.userId ? activity.userId : 'None' }}</td>
-          <td>{{ activity.createdAt | date:'medium' }}</td>
+          <td>{{ activity.createdAt*1000 | date:'medium' }}</td>
         </tr>
       }
     </tbody>

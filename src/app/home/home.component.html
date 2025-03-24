@@ -25,7 +25,7 @@
               <div class="post-details d-flex align-items-center mb-3">
                 <span class="author fw-bold" placement="top" ngbTooltip="Authored by"><small>{{ post.author }}</small></span>
                 <span class="delimiter"></span>
-                <span class="createdAt" placement="top" ngbTooltip="Created At"><small>{{ post.createdAt | date:'medium' }}</small></span>
+                <span class="createdAt" placement="top" ngbTooltip="Created At"><small>{{ post.createdAt!*1000 | date:'medium' }}</small></span>
               </div>
               <div class="post-categories">
                 @for (category of post.categories; track $index) {

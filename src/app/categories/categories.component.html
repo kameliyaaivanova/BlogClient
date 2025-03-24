@@ -21,7 +21,7 @@
         <tr>
           <th scope="row">{{ category.id }}</th>
           <td>{{ category.title }}</td>
-          <td>{{ category.createdAt | date:'medium' }}</td>
+          <td>{{ category.createdAt*1000 | date:'medium' }}</td>
           @if (hasUpdatePermission) {
             <td>
               <div class="actions">
